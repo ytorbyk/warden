@@ -38,6 +38,7 @@ RUN set -eux \
     && chmod +x /usr/local/bin/roost \
     && curl -s -L https://raw.githubusercontent.com/findcanary/roost/master/roost.completion | tee /etc/bash_completion.d/roost
 
-USER www-data
+COPY roost/roost.yml /home/www-data/.roost.yml
+RUN chown www-data:www-data /home/www-data/.roost.yml
 
-COPY roost/roost.yml ~/.roost.yml
+USER www-data
