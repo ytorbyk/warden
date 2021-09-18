@@ -9,6 +9,7 @@ on:
     - images/php-fpm/**
     branches:
     - develop
+  workflow_dispatch:
 
 jobs:
   php-fpm:
