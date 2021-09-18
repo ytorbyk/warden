@@ -33,12 +33,12 @@ RUN set -eux \
 RUN ln -s /usr/local/bin/n98-magerun /usr/local/bin/mr
 
 RUN set -eux \
-    && mkdir -p /usr/local/bin \
-    && curl -s -L https://github.com/findcanary/roost/releases/latest/download/roost.phar > /usr/local/bin/roost \
-    && chmod +x /usr/local/bin/roost \
-    && curl -s -L https://raw.githubusercontent.com/findcanary/roost/master/roost.completion | tee /etc/bash_completion.d/roost
-
-COPY roost/roost.yml /home/www-data/.roost.yml
-RUN chown www-data:www-data /home/www-data/.roost.yml
+    && PHP_VERSION=$(php -v | head -n1 | cut -d' ' -f2 | awk -F '.' '{print $1$2}') \
+    && if (( ${PHP_VERSION} >= 73 )); then \
+        mkdir -p /usr/local/bin \
+          && curl -s -L https://github.com/findcanary/roost/releases/latest/download/roost.phar > /usr/local/bin/roost \
+          && chmod +x /usr/local/bin/roost \
+          && curl -s -L https://raw.githubusercontent.com/findcanary/roost/master/roost.completion | tee /etc/bash_completion.d/roost \
+    fi
 
 USER www-data

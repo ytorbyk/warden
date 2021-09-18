@@ -17,15 +17,21 @@ services:
       - traefik.http.services.${WARDEN_ENV_NAME}-livereload.loadbalancer.server.port=35729
     environment:
       - MAGE_DEBUG_SHOW_ARGS=1
-      - AWS_REGION=${AWS_REGION:-}
-      - AWS_BUCKET=${AWS_BUCKET:-}
-      - AWS_ACCESS_KEY=${AWS_ACCESS_KEY:-}
-      - AWS_SECRET_KEY=${AWS_SECRET_KEY:-}
+      - ROOST_AWS_REGION=${ROOST_AWS_REGION:-}
+      - ROOST_AWS_BUCKET=${ROOST_AWS_BUCKET:-}
+      - ROOST_AWS_ACCESS_KEY=${ROOST_AWS_ACCESS_KEY:-}
+      - ROOST_AWS_SECRET_KEY=${ROOST_AWS_SECRET_KEY:-}
+      - ROOST_MYSQL_HOST=${MYSQL_HOST:-db}
+      - ROOST_MYSQL_USER=${ROOST_MYSQL_USER:-root}
+      - ROOST_MYSQL_PWD=${MYSQL_ROOT_PASSWORD:-magento}
 
   php-debug:
     environment:
       - MAGE_DEBUG_SHOW_ARGS=1
-      - AWS_REGION=${AWS_REGION:-}
-      - AWS_BUCKET=${AWS_BUCKET:-}
-      - AWS_ACCESS_KEY=${AWS_ACCESS_KEY:-}
-      - AWS_SECRET_KEY=${AWS_SECRET_KEY:-}
+      - ROOST_AWS_REGION=${ROOST_AWS_REGION:-}
+      - ROOST_AWS_BUCKET=${ROOST_AWS_BUCKET:-}
+      - ROOST_AWS_ACCESS_KEY=${ROOST_AWS_ACCESS_KEY:-}
+      - ROOST_AWS_SECRET_KEY=${ROOST_AWS_SECRET_KEY:-}
+      - ROOST_MYSQL_HOST=${MYSQL_HOST:-db}
+      - ROOST_MYSQL_USER=${ROOST_MYSQL_USER:-root}
+      - ROOST_MYSQL_PWD=${MYSQL_ROOT_PASSWORD:-magento}

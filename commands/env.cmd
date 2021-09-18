@@ -1,6 +1,16 @@
 #!/usr/bin/env bash
 [[ ! ${WARDEN_DIR} ]] && >&2 echo -e "\033[31mThis script is not intended to be run directly!\033[0m" && exit 1
 
+## pull Roost config
+if [[ -f "${WARDEN_HOME_DIR}/.env" ]]; then
+  eval "$(cat "${WARDEN_HOME_DIR}/.env" | sed 's/\r$//g' | grep "^ROOST_")"
+fi
+export AWS_REGION="${ROOST_AWS_REGION:-}"
+export AWS_REGION="${ROOST_AWS_BUCKET:-}"
+export AWS_REGION="${ROOST_AWS_ACCESS_KEY:-}"
+export AWS_REGION="${ROOST_AWS_SECRET_KEY:-}"
+export AWS_REGION="${ROOST_MYSQL_USER:-}"
+
 WARDEN_ENV_PATH="$(locateEnvPath)" || exit $?
 loadEnvConfig "${WARDEN_ENV_PATH}" || exit $?
 assertDockerRunning
