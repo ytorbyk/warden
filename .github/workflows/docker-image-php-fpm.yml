@@ -9,6 +9,7 @@ on:
     - images/php-fpm/**
     branches:
     - develop
+
 jobs:
   php-fpm:
     name: FPM ${{ matrix.php_version }}
