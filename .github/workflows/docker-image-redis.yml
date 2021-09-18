@@ -9,6 +9,7 @@ on:
     - images/redis/**
     branches:
     - develop
+  workflow_dispatch:
 jobs:
   redis:
     name: Redis
@@ -20,3 +21,5 @@ jobs:
         BUILD_GROUP: redis
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        DOCKER_REGISTRY: ${{ secrets.DOCKER_REGISTRY }}
+        WARDEN_IMAGE_REPOSITORY: ${{ secrets.IMAGE_REPOSITORY }}

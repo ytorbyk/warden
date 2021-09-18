@@ -1,7 +1,7 @@
 name: Docker Image PHP-FPM
 on:
   schedule:
-    - cron: "0 6 * * MON"   # 6 AM UTC on Monday
+  - cron: "0 6 1 * *"   # 6 AM UTC on 1st day of month
   push:
     paths:
     - version
@@ -10,7 +10,6 @@ on:
     branches:
     - develop
   workflow_dispatch:
-
 jobs:
   php-fpm:
     name: FPM ${{ matrix.php_version }}
