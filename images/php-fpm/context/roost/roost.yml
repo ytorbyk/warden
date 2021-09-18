@@ -1,0 +1,8 @@
+aws-region: '${AWS_REGION}'
+aws-bucket: '${AWS_BUCKET}'
+aws-access-key: '${AWS_ACCESS_KEY}'
+aws-secret-key: '${AWS_SECRET_KEY}'
+db-host: 'db'
+db-port: '3306'
+db-username: 'root'
+db-password: '${MYSQL_ROOT_PASSWORD:-app}'

@@ -32,4 +32,12 @@ RUN set -eux \
 # Create mr alias for n98-magerun
 RUN ln -s /usr/local/bin/n98-magerun /usr/local/bin/mr
 
+RUN set -eux \
+    && mkdir -p /usr/local/bin \
+    && curl -s -L https://github.com/findcanary/roost/releases/latest/download/roost.phar > /usr/local/bin/roost \
+    && chmod +x /usr/local/bin/roost \
+    && curl -s -L https://raw.githubusercontent.com/findcanary/roost/master/roost.completion | tee /etc/bash_completion.d/roost
+
 USER www-data
+
+COPY roost/roost.yml ~/.roost.yml
