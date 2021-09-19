@@ -3,6 +3,22 @@
 
 source "${WARDEN_DIR}/utils/install.sh"
 
+if [[ ! -f "${WARDEN_HOME_DIR}/.env" ]]; then
+    touch "${WARDEN_HOME_DIR}/.env"
+    cat > "${WARDEN_HOME_DIR}/.env" <<EOF
+WARDEN_IMAGE_REPOSITORY=docker.io/ytorbyk
+
+ROOST_AWS_REGION=
+ROOST_AWS_BUCKET=
+ROOST_AWS_ACCESS_KEY=
+ROOST_AWS_SECRET_KEY=
+ROOST_MYSQL_HOST=
+ROOST_MYSQL_USER=
+ROOST_MYSQL_PWD=
+ROOST_STORAGE=
+EOF
+fi
+
 if [[ ! -d "${WARDEN_SSL_DIR}/rootca" ]]; then
     mkdir -p "${WARDEN_SSL_DIR}/rootca"/{certs,crl,newcerts,private}
 
@@ -31,7 +47,7 @@ if [[ "$OSTYPE" =~ ^linux ]] \
   && [[ ! -f /etc/pki/ca-trust/source/anchors/warden-proxy-local-ca.cert.pem ]] \
   ## Fedora/CentOS
 then
-  echo "==> Trusting root certificate (requires sudo privileges)"  
+  echo "==> Trusting root certificate (requires sudo privileges)"
   sudo cp "${WARDEN_SSL_DIR}/rootca/certs/ca.cert.pem" /etc/pki/ca-trust/source/anchors/warden-proxy-local-ca.cert.pem
   sudo update-ca-trust
 elif [[ "$OSTYPE" =~ ^linux ]] \
