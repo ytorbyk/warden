@@ -5,11 +5,12 @@
 if [[ -f "${WARDEN_HOME_DIR}/.env" ]]; then
   eval "$(cat "${WARDEN_HOME_DIR}/.env" | sed 's/\r$//g' | grep "^ROOST_")"
 fi
-export AWS_REGION="${ROOST_AWS_REGION:-}"
-export AWS_REGION="${ROOST_AWS_BUCKET:-}"
-export AWS_REGION="${ROOST_AWS_ACCESS_KEY:-}"
-export AWS_REGION="${ROOST_AWS_SECRET_KEY:-}"
-export AWS_REGION="${ROOST_MYSQL_USER:-}"
+export ROOST_AWS_REGION="${ROOST_AWS_REGION:-}"
+export ROOST_AWS_BUCKET="${ROOST_AWS_BUCKET:-}"
+export ROOST_AWS_ACCESS_KEY="${ROOST_AWS_ACCESS_KEY:-}"
+export ROOST_AWS_SECRET_KEY="${ROOST_AWS_SECRET_KEY:-}"
+export ROOST_MYSQL_USER="${ROOST_MYSQL_USER:-}"
+export ROOST_STORAGE="${ROOST_STORAGE:-}"
 
 WARDEN_ENV_PATH="$(locateEnvPath)" || exit $?
 loadEnvConfig "${WARDEN_ENV_PATH}" || exit $?

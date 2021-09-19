@@ -24,6 +24,7 @@ services:
       - ROOST_MYSQL_HOST=${MYSQL_HOST:-db}
       - ROOST_MYSQL_USER=${ROOST_MYSQL_USER:-root}
       - ROOST_MYSQL_PWD=${MYSQL_ROOT_PASSWORD:-magento}
+      - ROOST_STORAGE=${ROOST_STORAGE:-/var/www/html/var}
 
   php-debug:
     environment:
@@ -35,3 +36,4 @@ services:
       - ROOST_MYSQL_HOST=${MYSQL_HOST:-db}
       - ROOST_MYSQL_USER=${ROOST_MYSQL_USER:-root}
       - ROOST_MYSQL_PWD=${MYSQL_ROOT_PASSWORD:-magento}
+      - ROOST_STORAGE=${ROOST_STORAGE:-/var/www/html/var}

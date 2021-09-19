@@ -19,8 +19,7 @@ sync:
         - "/pub/media"
         - "/pub/static/**"
         - "!/pub/static/.htaccess"
-        - "/var/**"
-        - "!/var/.htaccess"
+        - "/var"
 
     permissions:
       defaultFileMode: "0644"
