@@ -10,7 +10,12 @@ WARDEN_USAGE=$(cat <<EOF
 
 \033[33mCommands:\033[0m
   connect                  Launches an interactive mysql session within the current project environment
+  create                   Create currently configured database in db container
+  drop                     Drop database in db container
+  cleanup                  Re-create (drop & create) currently configured database in db container
   import                   Reads data from stdin and loads it into the current project\047s mysql database
+  restore                  Imports passed gzipped file it into the current project\047s mysql database
   dump                     Dumps database from db container via mysqldump
+  backup                   Exports and gzips database from db container into archive
 EOF
 )
