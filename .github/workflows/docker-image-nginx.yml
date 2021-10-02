@@ -8,7 +8,8 @@ on:
     - images/.trigger
     - images/nginx/**
     branches:
-    - develop
+    - main
+  workflow_dispatch:
 jobs:
   nginx:
     name: Nginx
@@ -20,3 +21,5 @@ jobs:
         BUILD_GROUP: nginx
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        DOCKER_REGISTRY: ${{ secrets.DOCKER_REGISTRY }}
+        WARDEN_IMAGE_REPOSITORY: ${{ secrets.IMAGE_REPOSITORY }}

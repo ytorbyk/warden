@@ -8,7 +8,8 @@ on:
     - images/.trigger
     - images/magepack/**
     branches:
-    - develop
+    - main
+  workflow_dispatch:
 jobs:
   magepack:
     name: Magepack
@@ -20,3 +21,5 @@ jobs:
         BUILD_GROUP: magepack
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        DOCKER_REGISTRY: ${{ secrets.DOCKER_REGISTRY }}
+        WARDEN_IMAGE_REPOSITORY: ${{ secrets.IMAGE_REPOSITORY }}

@@ -8,7 +8,8 @@ on:
     - images/.trigger
     - images/php-fpm/**
     branches:
-    - develop
+    - main
+  workflow_dispatch:
 jobs:
   php-fpm:
     name: FPM ${{ matrix.php_version }}
@@ -25,6 +26,8 @@ jobs:
         PHP_VARIANT: ${{ matrix.php_variant }}
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        DOCKER_REGISTRY: ${{ secrets.DOCKER_REGISTRY }}
+        WARDEN_IMAGE_REPOSITORY: ${{ secrets.IMAGE_REPOSITORY }}
 
   magento1:
     name: PHP-FPM ${{ matrix.php_version }} (magento1)
@@ -41,6 +44,8 @@ jobs:
         PHP_VERSION: ${{ matrix.php_version }}
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        DOCKER_REGISTRY: ${{ secrets.DOCKER_REGISTRY }}
+        WARDEN_IMAGE_REPOSITORY: ${{ secrets.IMAGE_REPOSITORY }}
 
   magento2:
     name: PHP-FPM ${{ matrix.php_version }} (magento2)
@@ -57,3 +62,5 @@ jobs:
         PHP_VERSION: ${{ matrix.php_version }}
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        DOCKER_REGISTRY: ${{ secrets.DOCKER_REGISTRY }}
+        WARDEN_IMAGE_REPOSITORY: ${{ secrets.IMAGE_REPOSITORY }}
