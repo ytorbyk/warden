@@ -51,9 +51,7 @@ case "${WARDEN_PARAMS[0]}" in
         && echo "'${WARDEN_PARAMS[1]:-${MYSQL_DATABASE}}' DB was re-created"
         ;;
     import)
-        LC_ALL=C sed -E 's/DEFINER[ ]*=[ ]*`[^`]+`@`[^`]+`/DEFINER=CURRENT_USER/g' \
-            | LC_ALL=C sed -E '/\@\@(GLOBAL\.GTID_PURGED|SESSION\.SQL_LOG_BIN)/d' \
-            | "${WARDEN_DIR}/bin/warden" env exec -T db \
+        "${WARDEN_DIR}/bin/warden" env exec -T db \
             mysql -uroot -p"${MYSQL_ROOT_PASSWORD}" --database="${WARDEN_PARAMS[1]:-${MYSQL_DATABASE}}" "$@"
         ;;
     restore)
