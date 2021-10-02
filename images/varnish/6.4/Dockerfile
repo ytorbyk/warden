@@ -11,10 +11,15 @@ RUN curl -s "${RPM_SCRIPT}" | bash \
     && dnf clean all \
     && rm -rf /var/cache/dnf
 
-ENV VCL_CONFIG      /etc/varnish/default.vcl
-ENV CACHE_SIZE      256m
-ENV VARNISHD_PARAMS -p default_ttl=3600 -p default_grace=3600 \
-    -p feature=+esi_ignore_https -p feature=+esi_disable_xml_check
+ENV VCL_CONFIG         /etc/varnish/default.vcl
+ENV CACHE_SIZE         256m
+ENV HTTP_RESP_HDR_LEN  8k
+ENV HTTP_RESP_SIZE     32k
+ENV VARNISHD_PARAMS \
+    -p default_ttl=3600 \
+    -p default_grace=3600 \
+    -p feature=+esi_ignore_https \
+    -p feature=+esi_disable_xml_check
 
 COPY default.vcl /etc/varnish/default.vcl.template
 
@@ -25,4 +30,6 @@ ENV ACL_PURGE_HOST  0.0.0.0/0
 EXPOSE 	80
 CMD envsubst '${BACKEND_HOST} ${BACKEND_PORT} ${ACL_PURGE_HOST}' \
         < /etc/varnish/default.vcl.template > /etc/varnish/default.vcl \
-    && varnishd -F -f $VCL_CONFIG -s malloc,$CACHE_SIZE $VARNISHD_PARAMS
+    && varnishd -F -f $VCL_CONFIG -s malloc,$CACHE_SIZE $VARNISHD_PARAMS \
+        -p http_resp_hdr_len=${HTTP_RESP_HDR_LEN} \
+    	-p http_resp_size=${HTTP_RESP_SIZE}
