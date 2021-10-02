@@ -11,7 +11,7 @@ services:
     environment:
       - discovery.type=single-node
       - xpack.security.enabled=false
-      - "ES_JAVA_OPTS=-Xms64m -Xmx512m"
+      - "ES_JAVA_OPTS=-Xms${WARDEN_ELASTICSEARCH_JAVA_XMS:-512m} -Xmx${WARDEN_ELASTICSEARCH_JAVA_XMX:-512m}"
     volumes:
       - esdata:/usr/share/elasticsearch/data
 
