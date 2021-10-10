@@ -37,7 +37,7 @@ case "${WARDEN_PARAMS[0]}" in
         fi
         ;;
     list)
-        docker volume ls --format "{{title .Name}}" -f name="^${WARDEN_ENV_NAME}"
+        docker volume ls --format '{{.Label "com.docker.compose.volume"}}' -f name="^${WARDEN_ENV_NAME}_"
         ;;
     *)
         fatal "The command \"${WARDEN_PARAMS[0]}\" does not exist. Please use --help for usage."
