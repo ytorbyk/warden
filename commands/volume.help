@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+[[ ! ${WARDEN_DIR} ]] && >&2 echo -e "\033[31mThis script is not intended to be run directly!\033[0m" && exit 1
+
+WARDEN_USAGE=$(cat <<EOF
+\033[33mUsage:\033[0m
+  volume <sub-command>
+
+\033[33mOptions:\033[0m
+  -h, --help        Display this help menu
+
+Archives will be exported to and imported from WARDEN_VOLUMES_FOLDER folder,
+by default it is $HOME and can be defined in ~/.warden/.env
+
+\033[0;31mContainers that use the volume must be stopped before export/import!\033[0m
+
+\033[33mCommands:\033[0m
+  export                 Export volume as archive. Usage: [volume sub-name, default dbdata] [archive name]
+                         Example: warden export dbdata dbdata.tar.gz
+  import                 Replace volume data from passed archive. Usage: <archive name> [volume sub-name, default dbdata]
+                         Example: warden import dbdata.tar.gz dbdata
+  list                   List of volumes
+EOF
+)
