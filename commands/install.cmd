@@ -3,6 +3,9 @@
 
 source "${WARDEN_DIR}/utils/install.sh"
 
+if [[ ! -d "${WARDEN_HOME_DIR}" ]]; then
+    mkdir -p "${WARDEN_HOME_DIR}"
+fi
 if [[ ! -f "${WARDEN_HOME_DIR}/.env" ]]; then
     touch "${WARDEN_HOME_DIR}/.env"
     cat > "${WARDEN_HOME_DIR}/.env" <<EOF
