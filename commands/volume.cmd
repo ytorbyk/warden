@@ -29,7 +29,7 @@ case "${WARDEN_PARAMS[0]}" in
         if [[ -f "${WARDEN_VOLUMES_FOLDER}/${WARDEN_PARAMS[1]:-}" ]]; then
             VOLUME_NAME="${WARDEN_ENV_NAME}_${WARDEN_PARAMS[2]:-"dbdata"}" \
             && VOLUME_ARCHIVE="${WARDEN_PARAMS[1]:-}" \
-            && pv -w 80 -N "Import [${VOLUME_NAME}]" ${WARDEN_VOLUMES_FOLDER}/${VOLUME_ARCHIVE} | \
+            && pv -N "Import [${VOLUME_NAME}]" ${WARDEN_VOLUMES_FOLDER}/${VOLUME_ARCHIVE} | \
                 docker run -i -v ${VOLUME_NAME}:/volume --rm loomchild/volume-backup restore -c pigz -f - \
             && printf "Data in ${YEL}${VOLUME_NAME}${NC} volume is replaced with data from ${YEL}${WARDEN_VOLUMES_FOLDER}/${VOLUME_ARCHIVE}${NC}\n"
         else
