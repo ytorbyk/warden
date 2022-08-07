@@ -3,10 +3,6 @@ ARG PHP_VERSION
 FROM ${ENV_SOURCE_IMAGE}:${PHP_VERSION}
 USER root
 
-RUN dnf install -y mc \
-    && dnf clean all \
-    && rm -rf /var/cache/dnf
-
 RUN npm install -g grunt-cli gulp yarn
 
 RUN set -eux \

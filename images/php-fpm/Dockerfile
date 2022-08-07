@@ -20,6 +20,10 @@ RUN dnf install -y python2 \
     && dnf clean all \
     && rm -rf /var/cache/dnf
 
+RUN dnf install -y mc \
+    && dnf clean all \
+    && rm -rf /var/cache/dnf \
+
 ENV NODE_VERSION    10
 RUN npm install -g n \
     && n install ${NODE_VERSION} \
