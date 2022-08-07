@@ -42,4 +42,4 @@ jobs:
           platforms: linux/amd64,linux/arm64
           build-args: NGINX_VERSION=${{ matrix.version }}
           push: ${{ github.ref == 'refs/heads/develop' && !env.ACT }}
-          tags: docker.io/wardenenv/nginx:${{ matrix.version }}
+          tags: docker.io/ytorbyk/nginx:${{ matrix.version }}

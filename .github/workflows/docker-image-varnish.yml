@@ -49,4 +49,4 @@ jobs:
           platforms: linux/amd64,linux/arm64
           build-args: VARNISH_VERSION=${{ env.VARNISH_VERSION }}
           push: ${{ github.ref == 'refs/heads/develop' && !env.ACT }}
-          tags: docker.io/wardenenv/varnish:${{ matrix.version }}
+          tags: docker.io/ytorbyk/varnish:${{ matrix.version }}

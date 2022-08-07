@@ -48,4 +48,4 @@ jobs:
           platforms: linux/amd64,linux/arm64
           build-args: OPENSEARCH_VERSION=${{ env.OPENSEARCH_VERSION }}
           push: ${{ github.ref == 'refs/heads/develop' && !env.ACT }}
-          tags: docker.io/wardenenv/opensearch:${{ matrix.version }}
+          tags: docker.io/ytorbyk/opensearch:${{ matrix.version }}

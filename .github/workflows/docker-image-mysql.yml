@@ -37,4 +37,4 @@ jobs:
           platforms: linux/amd64,linux/arm64
           build-args: MYSQL_VERSION=${{ matrix.version }}
           push: ${{ github.ref == 'refs/heads/develop' && !env.ACT }}
-          tags: docker.io/wardenenv/mysql:${{ matrix.version }}
+          tags: docker.io/ytorbyk/mysql:${{ matrix.version }}

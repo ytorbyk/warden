@@ -37,4 +37,4 @@ jobs:
           platforms: linux/amd64,linux/arm64
           build-args: MAILHOG_VERSION=${{ matrix.version }}
           push: ${{ github.ref == 'refs/heads/develop' && !env.ACT }}
-          tags: docker.io/wardenenv/mailhog:${{ matrix.version }}
+          tags: docker.io/ytorbyk/mailhog:${{ matrix.version }}

@@ -54,4 +54,4 @@ jobs:
           platforms: linux/amd64,linux/arm64
           build-args: ES_VERSION=${{ env.ES_VERSION }}
           push: ${{ github.ref == 'refs/heads/develop' && !env.ACT }}
-          tags: docker.io/wardenenv/elasticsearch:${{ matrix.version }}
+          tags: docker.io/ytorbyk/elasticsearch:${{ matrix.version }}
