@@ -93,6 +93,10 @@ for file in $(find ${SEARCH_PATH} -type f -name Dockerfile | sort -V); do
       IMAGE_TAG+=":${IMAGE_SUFFIX}"
     fi
 
+    if [[ $PUSH_FLAG ]]; then
+      BUILD_ARGS+=("--push")
+    fi
+
     # Skip build of xdebug3 fpm images on older versions of PHP (it requires PHP 7.2 or greater)
     if [[ ${IMAGE_SUFFIX} =~ xdebug3 ]] && test $(version ${PHP_VERSION}) -lt $(version "7.2"); then
       warning "Skipping build for ${IMAGE_TAG} (xdebug3 is unavailable for PHP ${PHP_VERSION})"
@@ -107,5 +111,4 @@ for file in $(find ${SEARCH_PATH} -type f -name Dockerfile | sort -V); do
 
     printf "\e[01;31m==> building ${IMAGE_TAG} from ${BUILD_DIR}/Dockerfile with context ${BUILD_CONTEXT}\033[0m\n"
     docker buildx build --platform linux/amd64,linux/arm64 -t "${IMAGE_TAG}" -f ${BUILD_DIR}/Dockerfile ${BUILD_ARGS[@]} ${BUILD_CONTEXT}
-    [[ $PUSH_FLAG ]] && docker push "${IMAGE_TAG}" || true
 done
