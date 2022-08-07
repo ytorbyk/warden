@@ -22,9 +22,9 @@ RUN dnf install -y python2 \
 
 RUN dnf install -y mc \
     && dnf clean all \
-    && rm -rf /var/cache/dnf \
+    && rm -rf /var/cache/dnf
 
-ENV NODE_VERSION    10
+ENV NODE_VERSION    14
 RUN npm install -g n \
     && n install ${NODE_VERSION} \
     && rm -rf /usr/local/n/versions/node
