@@ -37,7 +37,7 @@ Warden version $(cat ${WARDEN_DIR}/version)
   mkcert            Signs a wildcard certificate including all passed hostnames (via mkcert)
   sync              Controls the mutagen session (if using mutagen; see 'warden sync -h' for details)
   vnc               Establishes vnc sessions (see 'warden vnc -h' for details)
-  volume            Export/import volume's data
+  volume            Export/import volume data
   version           Show version information
 EOF
 )
