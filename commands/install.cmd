@@ -11,7 +11,6 @@ if [[ ! -f "${WARDEN_HOME_DIR}/.env" ]]; then
     cat > "${WARDEN_HOME_DIR}/.env" <<EOF
 WARDEN_IMAGE_REPOSITORY=docker.io/ytorbyk
 
-WARDEN_RESTART_POLICY=no
 EOF
 fi
 
