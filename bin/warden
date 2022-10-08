@@ -83,6 +83,7 @@ while (( "$#" )); do
     -h|--help) # display help (unless command is on 'nohelpargs' list and should display its own help)
       if (containsElement "${WARDEN_CMD_VERB}" "${WARDEN_CMD_NOHELPARGS[@]}") ;
         then
+          WARDEN_PARAMS+=("$1")
           shift
         else
           WARDEN_HELP=1
