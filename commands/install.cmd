@@ -31,7 +31,7 @@ if [[ "$OSTYPE" =~ ^linux ]] \
   && [[ ! -f /etc/pki/ca-trust/source/anchors/warden-proxy-local-ca.cert.pem ]] \
   ## Fedora/CentOS
 then
-  echo "==> Trusting root certificate (requires sudo privileges)"  
+  echo "==> Trusting root certificate (requires sudo privileges)"
   sudo cp "${WARDEN_SSL_DIR}/rootca/certs/ca.cert.pem" /etc/pki/ca-trust/source/anchors/warden-proxy-local-ca.cert.pem
   sudo update-ca-trust
 elif [[ "$OSTYPE" =~ ^linux ]] \
@@ -91,7 +91,11 @@ if [[ ! -f "${WARDEN_HOME_DIR}/.env" ]]; then
 	cat >> "${WARDEN_HOME_DIR}/.env" <<-EOT
 		# Set to "1" to enable global Portainer service
 		WARDEN_PORTAINER_ENABLE=0
-		# SEt to "0" to disable DNSMasq
+
+		# Set to "0" to disable DNSMasq
 		WARDEN_DNSMASQ_ENABLE=1
+
+		# Remove the variable if you want to use official images
+		WARDEN_IMAGE_REPOSITORY=docker.io/ytorbyk
 	EOT
 fi
