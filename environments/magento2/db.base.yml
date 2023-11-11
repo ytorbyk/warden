@@ -10,3 +10,10 @@ services:
       - mysqld
       - --max_allowed_packet=1024M
       - --explicit_defaults_for_timestamp=on
+      - --table_open_cache=100
+      - --wait_timeout=28800
+      - --tmp_table_size=1G
+      - --max_heap_table_size=1G
+      - --innodb_buffer_pool_size=1536M
+      - --innodb_log_buffer_size=128M
+      - --innodb_lock_wait_timeout=200
