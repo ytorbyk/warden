@@ -7,9 +7,9 @@ sync:
     ignore:
       vcs: false
       paths:
-        # Root .git folder 
+        # Root .git folder
         - "/.git/"
-      
+
         # System files
         - ".DS_Store"
         - "._*"
@@ -22,8 +22,7 @@ sync:
         - "/pub/media"
         - "/pub/static/**"
         - "!/pub/static/.htaccess"
-        - "/var/**"
-        - "!/var/.htaccess"
+        - "/var"
 
     permissions:
       defaultFileMode: "0644"
