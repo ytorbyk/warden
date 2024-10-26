@@ -6,7 +6,7 @@ DOCKER_PEERED_SERVICES=("traefik" "tunnel" "mailhog")
 
 ## messaging functions
 function warning {
-  >&2 printf "\033[33mWARNING\033[0m: $@\n" 
+  >&2 printf "\033[33mWARNING\033[0m: $@\n"
 }
 
 function error {
@@ -19,7 +19,7 @@ function fatal {
 }
 
 function version {
-  echo "$@" | awk -F. '{ printf("%d%03d%03d%03d\n", $1,$2,$3,$4); }';
+  echo "$@" | awk -F. '{ printf("%d%03d%03d%03d\n", $1+0,$2+0,$3+0,$4+0); }' | sed 's/^0*//';
 }
 
 ## determines if value is present in an array; returns 0 if element is present
