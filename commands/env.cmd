@@ -130,6 +130,9 @@ fi
 [[ ${WARDEN_MAGEPACK} -eq 1 ]] \
     && appendEnvPartialIfExists "${WARDEN_ENV_TYPE}.magepack"
 
+[[ ${WARDEN_PHP_SPX} -eq 1 ]] \
+    && appendEnvPartialIfExists "php-spx"
+
 if [[ -f "${WARDEN_ENV_PATH}/.warden/warden-env.yml" ]]; then
     DOCKER_COMPOSE_ARGS+=("-f")
     DOCKER_COMPOSE_ARGS+=("${WARDEN_ENV_PATH}/.warden/warden-env.yml")
@@ -149,6 +152,9 @@ fi
 ## disconnect peered service containers from environment network
 if [[ "${WARDEN_PARAMS[0]}" == "down" ]]; then
     disconnectPeeredServices "$(renderEnvNetworkName)"
+
+    ## regenerate PMA config on each env changing
+    regeneratePMAConfig
 fi
 
 ## connect peered service containers to environment network
@@ -168,6 +174,9 @@ if [[ "${WARDEN_PARAMS[0]}" == "up" ]]; then
         WARDEN_PARAMS=("${WARDEN_PARAMS[@]:1}")
         WARDEN_PARAMS=(up -d "${WARDEN_PARAMS[@]}")
     fi
+
+    ## regenerate PMA config on each env changing
+    regeneratePMAConfig
 fi
 
 ## lookup address of traefik container on environment network
@@ -207,6 +216,12 @@ ${DOCKER_COMPOSE_COMMAND} \
     --project-directory "${WARDEN_ENV_PATH}" -p "${WARDEN_ENV_NAME}" \
     "${DOCKER_COMPOSE_ARGS[@]}" "${WARDEN_PARAMS[@]}" "$@"
 
+
+if [[ "${WARDEN_PARAMS[0]}" == "stop" || "${WARDEN_PARAMS[0]}" == "down" || \
+      "${WARDEN_PARAMS[0]}" == "up" || "${WARDEN_PARAMS[0]}" == "start" ]]; then
+    regeneratePMAConfig
+fi
+
 ## resume mutagen sync if available and php-fpm container id hasn't changed
 if { [[ "${WARDEN_PARAMS[0]}" == "up" ]] || [[ "${WARDEN_PARAMS[0]}" == "start" ]]; } \
     && [[ $OSTYPE =~ ^darwin ]] && [[ -f "${MUTAGEN_SYNC_FILE}" ]] \
@@ -222,7 +237,7 @@ if [[ $OSTYPE =~ ^darwin ]] && [[ -f "${MUTAGEN_SYNC_FILE}" ]] # If we're using 
 then
   MUTAGEN_VERSION=$(mutagen version)
   CONNECTION_STATE_STRING='Connected state: Connected'
-  if [[ $(version "${MUTAGEN_VERSION}") -ge $(version '0.15.0') ]]; then
+  if [[ $((10#$(version "${MUTAGEN_VERSION}"))) -ge $((10#$(version '0.15.0'))) ]]; then
     CONNECTION_STATE_STRING='Connected: Yes'
   fi
 

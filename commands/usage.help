@@ -29,6 +29,7 @@ Warden version $(cat ${WARDEN_DIR}/version)
   shell             Launches into a shell within the current project environment
   status            Display list of all running Warden project environments
   debug             Launches debug enabled shell within current project environment
+  spx               Launches spx enabled shell within current project environment
   composer          Interacts with composer on the current project environment
   magento           Interacts with bin/magento on the current project environment
   n98-magerun       Interacts with n98-magerun on the current project environment
