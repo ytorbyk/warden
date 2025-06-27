@@ -98,6 +98,9 @@ if [[ ! -f "${WARDEN_HOME_DIR}/.env" ]]; then
 		# Set to "0" to disable phpMyAdmin
 		WARDEN_PHPMYADMIN_ENABLE=1
 
+		# Set to "1" to enable Mutagen
+		WARDEN_MUTAGEN_ENABLE=1
+
 		# Remove the variable if you want to use official images
 		WARDEN_IMAGE_REPOSITORY=docker.io/ytorbyk
 	EOT
