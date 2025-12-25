@@ -17,5 +17,6 @@ WARDEN_USAGE=$(cat <<EOF
   restore                  Imports passed gzipped file it into the current project\047s mysql database
   dump                     Dumps database from db container via mysqldump
   backup                   Exports and gzips database from db container into archive
+  upgrade                  Runs the relevant *SQL upgrade command when the project\047s database version updates
 EOF
 )
