@@ -106,7 +106,7 @@ fi
 [[ ${WARDEN_RABBITMQ} -eq 1 ]] \
     && appendEnvPartialIfExists "rabbitmq"
 
-[[ ${WARDEN_REDIS} -eq 1 ]] \
+[[ ${WARDEN_REDIS:=0} -eq 1 ]] \
     && appendEnvPartialIfExists "redis"
 
 [[ ${WARDEN_VALKEY:=0} -eq 1 ]] \
