@@ -98,8 +98,8 @@ if [[ ! -f "${WARDEN_HOME_DIR}/.env" ]]; then
 		# Set to "0" to disable phpMyAdmin
 		WARDEN_PHPMYADMIN_ENABLE=1
 
-		# Set to "1" to enable Mutagen
-		WARDEN_MUTAGEN_ENABLE=1
+		# Set to "0" to disabled Mutagen.  Keep commented out to use System default (Darwin defaults to 1)
+		# WARDEN_MUTAGEN_ENABLE=0
 
 		# Remove the variable if you want to use official images
 		WARDEN_IMAGE_REPOSITORY=docker.io/ytorbyk
