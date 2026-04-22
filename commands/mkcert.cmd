@@ -18,7 +18,7 @@ mkcert \
  -cert-file "${WARDEN_SSL_DIR}/certs/${CERTIFICATE_NAME}.crt.pem" \
  ${CERTIFICATE_DOMAIN_LIST}
 
-if [[ "$(cd "${WARDEN_HOME_DIR}" && ${DOCKER_COMPOSE_COMMAND} -p warden -f "${WARDEN_DIR}/docker/docker-compose.yml" ps -q traefik)" ]]
+if [[ "$(${WARDEN_BIN} svc ps -q traefik 2>/dev/null)" ]]
 then
   echo "==> Updating traefik"
   "$WARDEN_BIN" svc up traefik
